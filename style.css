@@ -1,43 +1,110 @@
-* {
+/* 1. Body e Contêiner Principal */
+body {
     margin: 0;
-    padding: 0;
-}
-.fundo {
-    background-image: linear-gradient(45deg, black, rgb(246, 236, 238));
     height: 100vh;
-    color: #fff;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Fundo da tela do Windows: cinza muito sutil */
+    background: #f0f0f0; 
+    /* Fonte do Windows */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
+
 .calculadora {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.8);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 15px;
-    padding: 15px;
+    /* Fundo da calculadora: Branco puro */
+    background: #fff;
+    padding: 10px; 
+    border-radius: 0; /* Bordas quadradas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra sutil */
+    width: 260px; 
 }
-.botao {
-    width: 50px;
-    height: 50px;
-    font-size: 25px;
-    cursor: pointer;
-    margin: 3px;
-    background-color: rgb(31, 31, 31);
-    border: none;
-    color: #fff;
-}
-.botao:hover {
-    background-color: black;
-}
-#resultado {
-    background-color: white;
-    width: 207px;
-    height: 30px;
-    margin: 5px;
-    font-size: 25px;
-    color: black;
+#expressao{
+    width: calc(100% - 20px);
+    height: 20px;
+    padding: 0 10px;
+    margin-bottom: 5px;
     text-align: right;
-    padding: 5px;
+    font-size: 0.9rem; /* Fonte menor */
+    color: #666; /* Cor cinza mais clara */
+    background-color: #fff;
+    font-weight: 400; /* Normal */
+    
+}
+/* 2. Display de Resultado */
+#resultado {
+    width: calc(100% - 20px); 
+    height: 70px; 
+    margin-bottom: 5px; 
+    /* Estilo do Windows: Fonte grande e fina (peso 300) */
+    font-size: 2.8rem; 
+    font-weight: 300; 
+    text-align: right;
+    padding: 0 10px; 
+    border: none; 
+    background: #fff;
+    color: #000;
+    line-height: 70px; 
+    outline: none; 
+}
+
+/* 3. Teclado (Grid) */
+.teclado {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px; /* Espaçamento minúsculo */
+}
+
+button {
+    height: 60px; 
+    font-size: 1.3rem; 
+    border: none; 
+    border-radius: 0; 
+    cursor: pointer;
+    transition: background 0.1s;
+    color: #333; 
+}
+
+/* 4. Estilos de Cor dos Botões */
+
+/* Botões Cinza Claro (Funções e Operadores) */
+.teclado button:nth-child(n+1):nth-child(-n+4), /* %, CE, C, ÷ */
+.teclado button:nth-child(8), /* × */
+.teclado button:nth-child(12), /* − */
+.teclado button:nth-child(17), /* + */
+.teclado button:nth-child(18) /* +/− */
+{
+    background: #f0f0f0; 
+}
+
+/* Botões Brancos (Números e Pontuação) */
+.teclado button:not(.igual):not([style*="background-color: #f0f0f0"]) {
+    background: #fff; 
+}
+
+/* O botão 'igual' - AZUL e ocupa 2 linhas */
+.igual {
+    /* Ocupa 2 linhas */
+    grid-row: span 2; 
+    /* Força a começar na coluna 1 e linha 4 (posição do 1 no fluxo) */
+    grid-column: 1; 
+    grid-row-start: 4;
+    
+    background: #0078d4 !important; /* Azul Windows */
+    color: #fff !important;
+}
+
+/* Botões que não usam span */
+.zero, .teclado button:nth-child(20) {
+    grid-column: auto; 
+    grid-row: auto;
+}
+
+/* 5. Efeitos Hover */
+.teclado button:hover {
+    background: #e6e6e6; 
+}
+
+.igual:hover {
+    background: #005a9e !important; 
 }
